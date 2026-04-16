@@ -14,11 +14,7 @@ struct SplashView: View {
             .ignoresSafeArea()
 
             VStack(spacing: 24) {
-                Image("CrystalDropLogo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                    .shadow(color: .black.opacity(0.3), radius: 20)
+                CrystalDropIcon(size: 120)
 
                 VStack(spacing: 4) {
                     Text("Rain Alert")

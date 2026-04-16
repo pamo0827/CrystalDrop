@@ -214,21 +214,17 @@ struct NeonSplashIcon: View {
         ZStack {
             // リップル（同心円）
             ForEach(0..<4, id: \.self) { i in
+                let d = Double(i)
+                let c = CGFloat(i)
+                let color1 = Color(red: 0.5, green: 0.2, blue: 1.0).opacity(0.9 - d * 0.2)
+                let color2 = Color(red: 0.1, green: 0.6, blue: 1.0).opacity(0.7 - d * 0.15)
+                let gradient = LinearGradient(colors: [color1, color2],
+                                             startPoint: .topLeading, endPoint: .bottomTrailing)
+                let rippleSize = size * (0.3 + d * 0.22)
+                let lineW = max(1, size * 0.025 - c * 0.5)
                 Circle()
-                    .stroke(
-                        LinearGradient(
-                            colors: [
-                                Color(red: 0.5, green: 0.2, blue: 1.0).opacity(0.9 - Double(i) * 0.2),
-                                Color(red: 0.1, green: 0.6, blue: 1.0).opacity(0.7 - Double(i) * 0.15),
-                            ],
-                            startPoint: .topLeading, endPoint: .bottomTrailing
-                        ),
-                        lineWidth: max(1, size * 0.025 - CGFloat(i) * 0.5)
-                    )
-                    .frame(
-                        width: size * (0.3 + Double(i) * 0.22),
-                        height: size * (0.3 + Double(i) * 0.22)
-                    )
+                    .stroke(gradient, lineWidth: lineW)
+                    .frame(width: rippleSize, height: rippleSize)
             }
 
             // 中心の雫

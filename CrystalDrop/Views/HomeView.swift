@@ -259,11 +259,7 @@ struct HomeView: View {
 
     private var emptyView: some View {
         VStack(spacing: 20) {
-            Image("CrystalDropLogo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 100, height: 100)
-                .shadow(radius: 10)
+            CrystalDropIcon(size: 100)
             Text("現在地から天気を取得します")
                 .foregroundStyle(.white)
         }
