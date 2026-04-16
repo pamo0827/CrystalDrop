@@ -5,8 +5,8 @@ import MapKit
 struct LocationSearchView: View {
     @ObservedObject var locationService: LocationService
     @Environment(\.dismiss) private var dismiss
-    let onLocationSelected: () -> Void
     var isInitial: Bool = false
+    let onLocationSelected: () -> Void
 
     @State private var searchText = ""
     @State private var searchResults: [MKLocalSearchCompletion] = []
