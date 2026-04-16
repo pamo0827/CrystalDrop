@@ -1,18 +1,38 @@
-<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="dropGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#b3e5fc;stop-opacity:1" />
-        </linearGradient>
-    </defs>
+<svg viewBox="0 0 1024 1024" width="1024" height="1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- App icon rounded corner clip (iOS: ~22% of size) -->
+    <clipPath id="iconClip">
+      <rect width="1024" height="1024" rx="225" ry="225"/>
+    </clipPath>
+    <!-- Drop gradient: white → light blue -->
+    <linearGradient id="dropGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#b3e5fc" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#iconClip)">
+    <!-- Background: deep indigo -->
     <rect width="1024" height="1024" fill="#1A237E"/>
-    <!-- Background Blobs -->
-    <circle cx="200" cy="200" r="300" fill="#3F51B5" opacity="0.3"/>
-    <circle cx="800" cy="800" r="400" fill="#283593" opacity="0.5"/>
-    <!-- Abstract Waves -->
-    <path d="M0 800 L1024 600 V1024 H0 Z" fill="#3949AB" opacity="0.6"/>
-    <path d="M0 900 L1024 750 V1024 H0 Z" fill="#5C6BC0" opacity="0.8"/>
-    <!-- Central Geometric Drop -->
-    <path d="M512 200 C512 200 712 500 712 650 A200 200 0 0 1 312 650 C312 500 512 200 512 200 Z" fill="url(#dropGrad)"/>
-    <path d="M512 200 C512 200 612 400 512 650 Z" fill="white" opacity="0.3"/>
+
+    <!-- Background blob 1 (top-left) -->
+    <circle cx="205" cy="205" r="302" fill="#3F51B5" opacity="0.3"/>
+
+    <!-- Background blob 2 (bottom-right) -->
+    <circle cx="819" cy="819" r="400" fill="#283593" opacity="0.5"/>
+
+    <!-- Wave layer 1 -->
+    <path d="M0 799 L1024 604 V1024 H0 Z" fill="#3949AB" opacity="0.6"/>
+
+    <!-- Wave layer 2 -->
+    <path d="M0 901 L1024 748 V1024 H0 Z" fill="#5C6BC0" opacity="0.8"/>
+
+    <!-- Central raindrop -->
+    <path d="M512 190 C512 190 712 500 712 645 A200 200 0 0 1 312 645 C312 500 512 190 512 190 Z"
+          fill="url(#dropGrad)"/>
+
+    <!-- Drop highlight -->
+    <path d="M512 190 C600 350 530 540 512 645 Z"
+          fill="white" opacity="0.3"/>
+  </g>
 </svg>
