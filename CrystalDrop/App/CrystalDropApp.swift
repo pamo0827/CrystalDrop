@@ -9,7 +9,7 @@ struct CrystalDropApp: App {
         WindowGroup {
             Group {
                 if !locationConfigured {
-                    LocationSearchView(locationService: locationService) {
+                    LocationSearchView(locationService: locationService, isInitial: true) {
                         withAnimation(.easeInOut(duration: 0.3)) {
                             locationConfigured = true
                         }

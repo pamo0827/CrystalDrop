@@ -6,6 +6,7 @@ struct LocationSearchView: View {
     @ObservedObject var locationService: LocationService
     @Environment(\.dismiss) private var dismiss
     let onLocationSelected: () -> Void
+    var isInitial: Bool = false
 
     @State private var searchText = ""
     @State private var searchResults: [MKLocalSearchCompletion] = []
@@ -26,27 +27,30 @@ struct LocationSearchView: View {
             waveLayers
 
             VStack(spacing: 0) {
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundStyle(.white)
-                            .padding(16)
-                            .background(.ultraThinMaterial)
-                            .clipShape(Circle())
+                if !isInitial {
+                    HStack {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundStyle(.white)
+                                .padding(16)
+                                .background(.ultraThinMaterial)
+                                .clipShape(Circle())
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                    .padding(.horizontal, 24)
+                    .padding(.top, 16)
                 }
-                .padding(.horizontal, 24)
-                .padding(.top, 16)
 
-                Spacer().frame(height: 30)
+                Spacer().frame(height: isInitial ? 60 : 30)
 
-                CrystalDropIcon(size: 110)
-
-                Spacer().frame(height: 24)
+                if !isInitial {
+                    CrystalDropIcon(size: 110)
+                    Spacer().frame(height: 24)
+                }
 
                 Text("どこの天気を知りたい？")
                     .font(.system(size: 28, weight: .bold))
