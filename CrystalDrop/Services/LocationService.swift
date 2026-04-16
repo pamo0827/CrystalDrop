@@ -84,21 +84,23 @@ final class LocationService: NSObject, ObservableObject {
 
     private func reverseGeocode(_ location: CLLocation) {
         geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, geoError in
-            guard let self else { return }
-            if geoError != nil {
-                self.error = .geocodingFailed
-                return
-            }
-            if let placemark = placemarks?.first {
-                let admin = placemark.administrativeArea ?? ""
-                let sub = placemark.locality ?? placemark.subAdministrativeArea ?? ""
-                let name = admin + sub
-                self.locationName = name
-                self.persistLocation(
-                    name: name,
-                    latitude: location.coordinate.latitude,
-                    longitude: location.coordinate.longitude
-                )
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                if geoError != nil {
+                    self.error = .geocodingFailed
+                    return
+                }
+                if let placemark = placemarks?.first {
+                    let admin = placemark.administrativeArea ?? ""
+                    let sub = placemark.locality ?? placemark.subAdministrativeArea ?? ""
+                    let name = admin + sub
+                    self.locationName = name
+                    self.persistLocation(
+                        name: name,
+                        latitude: location.coordinate.latitude,
+                        longitude: location.coordinate.longitude
+                    )
+                }
             }
         }
     }
